@@ -1,0 +1,12 @@
+{% extends 'copsite/signup_layout.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+    <form action="{% url 'copSite:register' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Create account">
+    </form>
+    <p>Already have and account <a href="{% url 'copSite:login' %}">login</a></p>
+{% endblock %}

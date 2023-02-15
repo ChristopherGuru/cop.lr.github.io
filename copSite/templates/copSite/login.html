@@ -1,0 +1,25 @@
+{% extends 'copSite/login_layout.html' %} 
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div>{{message}}</div>
+    {% endfor %}
+    {% endif %}
+    
+    <form action="{% url 'copSite:login' %}" method="post">
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input type="text" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" name="password">
+
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account <a href="{% url 'copSite:register' %}">Register</a></p>
+{% endblock %}
