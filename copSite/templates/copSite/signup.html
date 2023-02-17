@@ -5,7 +5,14 @@
 {% block content %}
     <form action="{% url 'copSite:register' %}" method="post">
         {% csrf_token %}
-        {{form}}
+        {{form.username.labe}}
+        {{form.username}}
+
+        {{form.email.label}}
+        {{form.email}}
+
+        {{form.password.label}}
+        {{form.password}}
         <input type="submit" value="Create account">
     </form>
     <p>Already have and account <a href="{% url 'copSite:login' %}">login</a></p>
