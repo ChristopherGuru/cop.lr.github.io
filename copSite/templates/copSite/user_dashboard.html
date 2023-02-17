@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}User Dashboard{% endblock %}</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'copSite:logout' %}">
+            <button type="button">Logout</button>
+        </a>
+
+        <ul>
+            <li>Username: {{request.user.username}}</li>
+        </ul>
+    </div>
+
+    <div>
+        <div>
+            <a href="{% url 'copSite:membership_form' %}">
+                <button type="button">Add member</button>
+            </a>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <td>Suffix</td>
+                    <td>Last Name</td>
+                    <td>Middle Name</td>
+                    <td>First Name</td>
+                    <td>Current Address</td>
+                    <td>Phone Number</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for members in cop_mem %}
+                    <tr>
+                        <td>{{members.suffix}}</td>
+                        <td>{{members.l_name}}</td>
+                        <td>{{members.m_name}}</td>
+                        <td>{{members.f_name}}</td>
+                        <td>{{members.current_address}}</td>
+                        <td>{{members.phone_num}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

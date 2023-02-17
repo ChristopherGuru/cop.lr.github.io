@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Membership Form{% endblock %}</title>
+</head>
+<body>
+    <h1>Church of Pentecost Membership Form</h1>
+    <form action="{% url 'copSite:membership_form' %}" method="post">
+        {% csrf_token %}
+        {{form.suffix.label}}
+        {{form.suffix}}
+
+        {{form.f_name.label}}
+        {{form.f_name}}
+
+        {{form.m_name.label}}
+        {{form.m_name}}
+
+        {{form.l_name.label}}
+        {{form.l_name}}
+
+        {{form.birth_date.label}}
+        {{form.birth_date}}
+
+        {{form.city_of_birth.label}}
+        {{form.city_of_birth}}
+
+        {{form.district_of_birth.label}}
+        {{form.district_of_birth}}
+
+        {{form.county_of_orgin.label}}
+        {{form.county_of_orgin}}
+
+        {{form.nationality.label}}
+        {{form.nationality}}
+
+        {{form.current_address.label}}
+        {{form.current_address}}
+
+        {{form.phone_num.label}}
+        {{form.phone_num}}
+
+        {{form.email.label}}
+        {{form.email}}
+
+        {{form.occupation.label}}
+        {{form.occupation}}
+
+        <p><b>History of Salvation</b></p>
+        <p>Have you accepted Jesus Charist as your Lord and Savior: YES() NO() if yes, kingly explain how, where and when.</p>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
