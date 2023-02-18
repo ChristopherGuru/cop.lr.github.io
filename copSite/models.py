@@ -1,10 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
-class CopPolicy(models.Model):
-    i_accept = models.BooleanField("I ACCEPT the Terms and Condition of the Church of Pentecos", default=True)
+#class CopPolicy(AbstractUser):
+    #i_accept = models.BooleanField("I ACCEPT the Terms and Condition of the Church of Pentecos", default=True)
 
 TITLE_CHOICES = [('MR', 'Mr'), ('MRS', 'Mrs'), ('SIS', 'Sis'), ('BRO', 'Bro'), ('DEC', 'Dec'), ('DNS', 'Dns'), ('ELD', 'Eld')]
 class CopMembership(models.Model):
@@ -21,10 +22,10 @@ class CopMembership(models.Model):
     phone_num = PhoneNumberField(blank=True, null=True)
     email = models.EmailField() # This will be options
     occupation = models.CharField(max_length=65)
-    history_of_salvation = models.CharField(max_length=150)# Have you accepted Jesus Charist as your Lord and Savior: YES() NO() if yes, kingly explain how, where and when.
+    #This will be a heading History of Sslvation.
     if_yes = models.CharField(max_length=150)
 
-    #Baptism History
+    # This will be a heading Baptism History
     church = models.CharField(max_length=65)
     location = models.CharField(max_length=65)
     who_conducted_the_baptism = models.CharField(max_length=65)
@@ -59,7 +60,7 @@ class CopMembership(models.Model):
     true and complete. I do also accept all doctrines and believes of the Church of Pentecost.
     """
     signed = models.CharField(max_length=56)
-    cop_policy = models.ManyToManyField(CopPolicy, blank=True)
+    #i_accept = models.OneToOneField(CopPolicy, on_delete=models.CASCADE, null=True)
 
     # FOR OFFICAL USE ONLY
     this_certifies_that = models.CharField(max_length=65) # This field continue with this text "has met all the requirements to be a member of the Chruch of Pentecost, Praise Temple(Chocolate City Assembly)."
@@ -67,3 +68,6 @@ class CopMembership(models.Model):
     date = models.DateTimeField(auto_now_add=True) # This will be signed by assembly secreatary.
     approved = models.CharField(max_length=65)
     date_approved = models.DateTimeField(auto_now_add=True) # This will be signed by the presiding Elder.
+
+    def __str__(self):
+        return f"{self.id} {self.suffix} {self.l_name} {self.m_name} {self.l_name} {self.birth_date} {self.city_of_birth} {self.district_of_birth} {self.county_of_orgin} {self.nationality} {self.current_address}"
